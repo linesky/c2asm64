@@ -1,20 +1,20 @@
 #include <dlfcn.h>
+extern void clearss();
+extern void putss(char *msg);
+extern void prints(char *msg);
+extern void fputss(char *msg,int handler );
+extern void fgetss(char *msg,int sizes,int handler );
+extern void writess(char *msg,int sizes,int handler );
+extern int creatss(char *msg,int acesss );
+extern int openss(char *msg,int acesss ,int permition );
+extern int closess(int handler );
+extern void exitss(int codes);
 int *handler;
-void(*clearss)();
 void (*strs)(int,char*);
-void (*putss)(char*);
-void (*prints)(char*);
-void (*fputss)(char*,int);
-void (*fgetss)(char*,int,int);
-void (*writess)(char*,int,int);
-int (*creatss)(char*,int);
-int (*openss)(char*msg,int,int);
-void (*closess)(int);
-void (*strlens)(char*);
+int (*strlens)(char*);
 void (*strcps)(char*,char*);
 void (*strncps)(char*,char*,int);
 void (*strcats)(char*,char*);
-void (*exitss)(int);
 void (*memcps)(char*,char*,int);
 void (*memfills)(char*,int,char);
 int (*getout)();
@@ -29,74 +29,21 @@ int main(){
 
 
 	char *varerror="error on lib";
-
-	handler=dlopen("./dlib.so.0.1",RTLD_LAZY);
-	if (!handler){
-		
-		return 0;
-	}
-	exitss=dlsym(handler,"exitss");
-	if(dlerror()!=NULL){
-		
-		return 0;
-	}
-	putss=dlsym(handler,"putss");
-	if(dlerror()!=NULL){
-		
-		return 0;
-	}
 	
-	clearss=dlsym(handler,"clearss");
-	if(dlerror()!=NULL){
+        int i;
+        
+	handler=dlopen("/lib/dlib.so.0.1",RTLD_LAZY);
+	if (!handler){
 		putss(varerror);
 		exitss(1);
 	}
-	
+
 	strs=dlsym(handler,"strs");
 	if(dlerror()!=NULL){
 		putss(varerror);
 		exitss(1);
 	}
-	prints=dlsym(handler,"prints");
-	if(dlerror()!=NULL){
-		putss(varerror);
-		exitss(1);
-	}
 	
-	fputss=dlsym(handler,"fputss");
-	if(dlerror()!=NULL){
-		putss(varerror);
-		exitss(1);
-	}
-	
-	fgetss=dlsym(handler,"fgetss");
-	if(dlerror()!=NULL){
-		putss(varerror);
-		exitss(1);
-	}
-	
-        writess=dlsym(handler,"writess");
-	if(dlerror()!=NULL){
-		putss(varerror);
-		exitss(1);
-	}	
-	creatss=dlsym(handler,"creatss");
-	if(dlerror()!=NULL){
-		putss(varerror);
-		exitss(1);
-	}	
-	
-	openss=dlsym(handler,"openss");
-	if(dlerror()!=NULL){
-		putss(varerror);
-		exitss(1);
-	}
-		
-	closess=dlsym(handler,"closess");
-	if(dlerror()!=NULL){
-		putss(varerror);
-		exitss(1);
-	}
 		
 	strlens=dlsym(handler,"strlens");
 	if(dlerror()!=NULL){
@@ -174,9 +121,10 @@ int main(){
 		putss(varerror);
 		exitss(1);
 	}
+        	
 	putss("\x1b[43;37mhello world....\n");
-
+        putss("\x1b[43;37mhello world....\n");
 	dlclose(handler);
-	exitss(0);
+
 	return 0;
 }

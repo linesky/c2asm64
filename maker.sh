@@ -2,9 +2,10 @@ printf "\x1bc\x1b[43;37m"
 roots=$(pwd)/roots
 tmps=/tmp/lists.txt
 tmps2=/tmp/lists2.txt
-nasm -f elf32 -o dlib.o dlib.asm
-gcc -shared -o dlib.so.0.1 dlib.o
-gcc -o my duseit.c -ldl
+nasm -f elf32 -o dlib.a dlib.asm
+nasm -f elf32 -o libc.o clib.asm
+gcc -shared -o dlib.so.0.1 dlib.a -nostdlib
+gcc -o my  libc.o duseit.c -ldl
 mkdir -p $roots
 mkdir -p $roots/usr
 mkdir -p $roots/usr/bin
