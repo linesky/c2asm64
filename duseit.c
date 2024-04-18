@@ -25,11 +25,20 @@ int (*getwritess)();
 int (*getreadswritess)();
 void (*strchrreplace)(char*,char,char);
 void *NULL=(void *)0x0L;
+int address(char *c){
+    int i=0;
+    char *cc;
+    i=(int) c;
+    return i;
+    cc=(char*)i;
+    //return cc;
+
+}
 void sstart(){
-	char *toprint="\x1b[43;37mhello world....";
-        prints(toprint);
-        prints(toprint);
-        prints(toprint);
+	char *l="\x1b[43;37mhello world....";
+        prints((char*)address(l));
+        prints((char*)address(l));
+        prints((char*)address(l));
 
 }
 int main(){
