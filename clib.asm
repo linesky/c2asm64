@@ -117,5 +117,10 @@ exitss:    ; Finalização do programa
 
 section .data
 db 0
+stdoutss: dd 1
+stdinss: dd 2
+readsss: dd 0
+writesss: dd 1
+readwritesss: dd 2
 enters: db 10
 clearsss: db 27,"c",0
