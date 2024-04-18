@@ -25,6 +25,13 @@ int (*getwritess)();
 int (*getreadswritess)();
 void (*strchrreplace)(char*,char,char);
 void *NULL=(void *)0x0L;
+void sstart(){
+	char *toprint="\x1b[43;37mhello world....";
+        prints(toprint);
+        prints(toprint);
+        prints(toprint);
+
+}
 int main(){
 
 
@@ -121,9 +128,8 @@ int main(){
 		putss(varerror);
 		exitss(1);
 	}
-        	
-	putss("\x1b[43;37mhello world....\n");
-        putss("\x1b[43;37mhello world....\n");
+	
+        sstart();
 	dlclose(handler);
 
 	return 0;
